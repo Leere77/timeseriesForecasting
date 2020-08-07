@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/7.1.0/math.min.js"></script>
+    <!-- <script src="tf.min.js"></script>
+    <script src="plotly-latest.min.js"></script> -->
+
+    <script src="config.js"></script>
+    <script src="utils.js"></script>
+    <!-- <script src="spline.js"></script> -->
+    <!-- <script src="math.js"></script> -->
+
+    <title>ANN predict</title>
+  </head>
+  <body>
+    <div id="root">
+      <span class="epochs" style="position: fixed; z-index: 100; right: 10px;"></span>
+
+          <label for="files">Входные данные (.csv):</label> <br>
+          <input type="file" id="csv_file" accept=".csv"/>
+
+      <div class="cols"></div>
+      <br>
+      <label for="smooth">Сглаживание:</label>
+      <input type="checkbox" class="smooth" name="smooth">
+      <br>
+
+      <!-- <br>
+      <label for="imfs">Число IMF компонент:</label>
+      <input type="range" id="imfsSlider" min="0" max="2" value="2" name="imfs" oninput="imfs.value = imfsSlider.value">
+      <input type="text" id="imfs" value="2" disabled>
+      <br> -->
+
+      <br>
+      <label for="ratio">Размер тестовой выборки (%):</label>
+      <input type="range" id="ratioSlider" min="60" max="95" value="85" name="ratio" oninput="ratio.value = ratioSlider.value">
+      <input type="text" id="ratio" value="85" disabled>
+      <br>
+      <br>
+      <label for="ratio">Ширина окна:</label>
+      <br>
+      <label for="st_state">Определять через сдвиговую функцию:</label>
+      <input type="checkbox" class="st_state" name="st_state" checked>
+      <br>
+      <input type="text" id="stVal" placeholder="Ширина окна" value="15">
+      <br>
+
+      <button onclick="main()" disabled class="start">Запуск</button>
+
+      <div class="plots">
+        <div id="ts_" ></div>
+        <div id="corr" ></div>
+        <div id="train"></div>
+
+        <div class="stop" hidden>
+          <label for="stopTraining">Остановить процесс обучения:</label>
+          <input type="checkbox" id="stopTraining" name="stopTraining">
+        </div>
+        <div id="forecast"></div>
+        <div id="predict"></div>
+      </div>
+
+	</div>
+
+  </body>
+  <script src="ml.js"></script>
+</html>
